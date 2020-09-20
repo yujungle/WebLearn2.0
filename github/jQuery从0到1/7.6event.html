@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jQuery-3.x-1.x/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn").click(function(e){
+                alert(e.type);
+            })
+            $("a").click(function(e){
+                var result=$(e.target).attr("href");
+                alert(result);
+                // return false;
+            })
+        })
+        $(document).mousemove(function(e){
+            var result="鼠标坐标为：(" + e.pageX + "," +e.pageY + ")";
+            $("body").text(result)
+        })
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="按钮">
+    <a href="http://www.lvyestudy.com/" target="_blank">绿叶学习网</a>
+</body>
+</html>

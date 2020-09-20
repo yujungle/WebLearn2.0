@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS进度条</title>
+    <link rel="stylesheet" href="bootstrap-4.2.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <style>
+        .load-bar {
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .progress-bar-striped {
+            width: 0%;
+            border-radius: inherit;
+            position: relative;
+            animation: loader 10s linear infinite;
+        }
+
+        @keyframes loader {
+            from {
+                width: 0%
+            }
+
+            to {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body class="container">
+    <h3 class="md-4">按钮链接添加徽章</h3>
+    <button class="btn btn-primary">按钮<span class="badge badge-light ml-4">1</span></button>
+    <a href="#" class="btn btn-primary">链接<span class="badge badge-light ml-4">2</span></a>
+    <button class="btn btn-primary">按钮<span class="badge badge-light badge-pill ml-4 ">100</span></button>
+    <a href="#" class="btn btn-primary">链接<span class="badge badge-light badge-pill ml-4">200</span></a>
+
+    <h3>进度条</h3>
+    <div class="progress load-bar my-5 w-75 mx-auto" style="height: 30px;">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated text-center">
+            <span id="counter"></span>
+        </div>
+    </div>
+
+    <!--JS脚本文件-->
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="bootstrap-4.2.1-dist/js/bootstrap.js"></script>
+    <script>
+        $(function () {
+            var interval = setInterval(increment, 100);
+            var current = 0;
+            function increment() {
+                current++;
+                $('#counter').html(current+'%');
+                if (current == 100) { current = 0; }
+            }
+        });
+    </script>
+</body>
+
+</html>
