@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="../jQuery-3.x-1.x/jquery-3.2.1.min.js"></script>
+    <style>
+        div {
+            width: 0;
+            height: 0;
+            border-width: 100px;
+            border-style: solid;
+            margin: 20px auto;
+        }
+        .btn{
+            margin: 0 auto;
+            width:100%;
+            text-align: center;
+        }
+        .top {
+            border-color: red transparent transparent transparent;
+        }
+
+        .bottom {
+            border-color: transparent transparent red transparent;
+        }
+
+        .left {
+            border-color: transparent red transparent transparent;
+        }
+
+        .right {
+            border-color: transparent transparent transparent red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="trangle top"></div>
+    <nav class="btn">
+        <input type="button" value="上三角">
+        <input type="button" value="左三角">
+        <input type="button" value="下三角">
+        <input type="button" value="右三角">
+
+    </nav>
+    <script>
+        $(function () {
+
+            $ins = $("input");
+            $insche = $("input[checked]");
+            valClass = {
+                "上三角": "top",
+                "左三角": "left",
+                "下三角": "bottom",
+                "右三角": "right"
+            }
+            $ins.click(function () {
+                $index = $.inArray(this, $ins);
+                $val = $ins.eq($index).val();
+                $("div").removeAttr("class").addClass(valClass[$val])
+
+            })
+
+        })
+    </script>
+</body>
+
+</html>
