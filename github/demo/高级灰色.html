@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jQuery-3.x-1.x/jquery-3.2.1.min.js"></script>
+    <style>
+        section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        div:first-child {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 10px;
+            background-color: #aac2c4;
+            display: block;
+        }
+        div:last-child{
+            text-align: center;
+        }
+        input {
+            display: inline-block;
+            width: 8rem;
+            font-size: 13px;
+            height: 20px;
+            line-height: 16px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom:  5px;
+            background-color: #aac2c4;
+            border: 1px solid #aac2c4
+        }
+        input:last-child{
+            width:16em;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="paleBluishGrey">浅蓝灰色</div>
+        <div>
+            <input type="button" value="pale bluish grey">
+            <input type="button" value="light bluish grey">
+            <input type="button" value="light greyish blue">
+            <input type="button" value="milk grey">
+            <input type="button" value="dark greyish blue">
+            <input type="button" value="magpie grey">
+            <input type="button" value="dull bluish grey">
+            <input type="button" value="winter grey">
+            <input type="button" value="moss green">
+
+        </div>
+    </section>
+    <script>
+        $(function(){
+            $color={
+                "pale bluish grey":   "#aac2c4",
+                "light bluish grey":  "#95b1ba",
+                "light greyish blue": "#8aa4a8",
+                "milk grey":          "#949c97",
+                "dark greyish blue":  "#576768",
+                "magpie grey":        "#455667",
+                "dull bluish grey":   "#637179",
+                "winter grey":        "#6d817d",
+                "moss green":         "#58665e"
+            }
+            $blo=$("div").eq(0);
+            $("input").click(function(){
+                console.log($(this).val());
+                console.log($color[$(this).val()])
+              
+                $blo.removeAttr("Class").css("background-color",$color[$(this).val()]).html($(this).val());
+
+
+
+            })
+        
+        })
+    </script>
+</body>
+
+</html>
