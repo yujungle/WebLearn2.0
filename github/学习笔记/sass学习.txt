@@ -1,0 +1,177 @@
+1.语法基础
+    1.变量   用$声明，$width:100px   Sass赋值使用冒号而不是等号。
+            变量取值有一般值和默认值，默认值需要在变量值后面加上"!default"。 $width:100px !default;
+        作用域：全局变量，局部变量。
+            全局变量是在选择器，混合宏，继承外部定义的变量，作用于整个程序
+            局部变量是在选择器，混合宏，继承内部定义的变量，在内部使用
+
+    2.数据类型
+        数字型：大多数是数字加单位，如10px,1.5rem,10%
+        字符串：有引号的字符串，无引号的字符串，和CSS语法保持一致
+        布尔值：true，false，一般用于 @if...@else...语句
+        颜色值：关键字：red,green...;十六进制：#ff00ff;RGB；HSL；
+        列表值： $列表名: val1,val2,val3,...  (用逗号分隔)
+                $列表名： val1 val2 val3 ...  （用空格分隔）
+                index($列表名，值)返回列表值的索引，从1开始。
+        Map值： $变量名:(
+                    key1: val1,
+                    key2: val2,
+                    ...
+                )
+    3.嵌套
+        选择器嵌套：  select1{
+                        attr1:val1;
+                        select2{
+                            attr2:val2;
+                            select3{
+                                attr3:val3;
+                            }
+                        }
+                    }
+
+                    嵌套的层级越多，速度越慢，所以应避免多级嵌套。
+        属性嵌套：   div{
+                        font:{                 //注意前缀后面加冒号
+                            family:Arial;      //等于font-family
+                            size:14px;         //等于font-size
+                            weight:bold;       //等于font-weight
+                        }
+                    }
+        伪类/伪元素嵌套：   div{
+                        &:after{               //相当于div::after,注意前面的&:是必须的
+                            display:hidden;
+                        }
+                    }
+    4.差值
+        #{变量}    可以插入任何地方。
+        @for $i from 1 through 3{
+            .item-#{$1}{
+                width:10px*$i;
+            }
+        }
+    5.注释：    //注释          注释内容在编译后不会留下来，即编译后的CSS代码中没有
+                /*注释*/        注释内容在编译后会留下来，编译后的CSS代码中也会出现
+                /*!注释*/       !表示重要，一般用于声明版权。
+2.基本运算
+    1.数字运算： +，-，*，/
+        +，- 运算的数值可以带单位，单位必须相同，- 的前后需要用空格和数值分开，以免和连字符搞混。带单位的数值可以和不带单位的数值相加，结果带单位，但是带单位的和不带单位的不能相减。
+        *，/ 运算的数值可以带单位，但是只能有一个带单位，另一个是纯数字。
+        / 在CSS中是作为符号来用了，如果想用‘/’当做除号来用需要满足以下3点之一
+            1.数值被小括号包裹：   width:(100px/2)
+            2.数值是另外一个数学表达式的一部分
+            3.数值或它的任意部分存储在一个变量或者函数的返回值。
+            $height=10px;
+            div{
+                font:20px/10px;                   //不是除法运算
+                width:(20px/10px);                //使用小括号，是除法
+                height:$height/2;                 //使用变量，是除法
+                line-height:round(1.5)/2;         //使用函数返回值，是除法
+                margin-left:10px - 10px/2px;      //是在一个数学表达式中，是除法
+            }
+        2.字符运算： 
+            用 + 实现字符串的拼接
+            字符串分为有引号字符串，无引号字符串，字符运算的结果是否带引号取决于左边字符串是否带引号，左边字符串带引号，则结果带引号，否则，结果不带引号。
+        3.颜色运算： 支持+，-，*，/ 四种运算，是转化为16进制后进行的分段运算，其中红，绿，蓝分     别运算。
+            color:(#010203+#040506)== color:#050709;
+            color:(#010203*2)== color:#020406;
+3.代码重写
+    用于一个多个地方使用相同的CSS样式。
+    1.继承  CSS中：子元素继承父元素的某些样式属性，
+            Sass中：用@extend 来继承一个样式块
+            .ml{ margin-left:0} li{ @extend .ml} ul{ @extend .ml} p{ @extend .ml}
+            ==> .ml,li,ul,p{ margin-left:0}
+    2.占位符  用来配合@extend的使用。 %placeholder,以%开头，后面跟名字。
+            基类.ml可能并不会在HTML中用到，为了避免这个多雨多余的类，引入了占位符来优化@extend 
+            1.基类不会用到，使用占位符配合@extend
+                %ml{ margin-left:0} li{ @extend %ml} ul{ @extend %ml} p{ @extend %ml}
+            2.基类会用到，使用@extend
+    3.混合宏 跟JS中的函数很相似，被称为“Sass中的函数”
+        1.定义与调用： 
+            @mixin 混合宏名{
+                sass代码块
+            }
+            select{
+                @include 混合宏名；
+            }
+        2.混合宏的参数： 可以是一个，也可以是多个。
+            @mixin 混合宏名（参数1，参数2,...）{
+                属性1：参数1；
+                属性2：参数2；
+                ...
+            }
+            select1{
+                @include 混合宏名(参数1，参数2,...)
+            }
+            select2{
+                @include 混合宏名(参数1，参数2,...)
+            }
+            ==>
+             select1{
+                属性1：参数1；
+                属性2：参数2；
+                ...
+            }
+             select2{
+                属性1：参数1；
+                属性2：参数2；
+                ...
+            }
+
+        3.带参数的默认值
+            @mixin 混合宏名（参数:val){...}  参数的默认值是val。
+        4.优缺点：
+            缺点：混合宏编译出来的CSS不会把代码块合并，在成代码冗余。
+            有点：可以使用传递参数的方式来封装功能代码块。
+    4.继承和混合宏的比较
+        继承和混合宏都能实现相同代码块的重用，提高开发效率
+        继承一般不存在代码冗余，混合宏会产生代码冗余
+        继承不可以传递参数，混合宏可以传递参数
+4.流程控制
+    1.  @if                         单项选择
+        @if...@else                 双项选择
+        @if...@else if...@else...   多项选择
+    2.  @for  for循环
+        两种方式：   @for $i from 开始值 through 结束值  （包括结束值）
+                    @for $i from 开始值 to 结束值        （不包括结束值）
+    3.  @while
+                @while(判断条件){
+                    执行语句；
+                }
+            ！Sass没有do...while语句。
+    4.  @each
+                @each $var in $list {
+                    ......
+                }
+                $var 是一个变量，$list 是一个列表。
+            $list: sprite1,sprite2,sprite3;
+            %spriteAll{
+                background:url("images/sprite.png") no-repeat;
+            }    
+            @each $var in $list{
+                .#{$var} {
+                    @extend %spriteAll;
+                    background-position: 0 index($list,$var)*(-30px);
+                }
+            }
+            ==>
+            .sprite1,.sprite2,.sprite3{
+                background:url("images/sprite.png") no-repeat;
+            }
+            .sprite1{
+                background-position: 0 -30px;
+            }
+            .sprite2{
+                background-position: 0 -60px;
+            }
+            .sprite3{
+                background-position: 0 -90px;
+            }
+
+
+        
+                
+
+    
+
+
+    

@@ -1,0 +1,7 @@
+json是一种数据交换格式。
+json规定字符集是utf-8
+1.序列化   JSON.stringify(object)   将对象object序列化为JSON格式
+          JSON.stringify(object,null,' ') 将对象序列化为JSON格式，按行输出
+          第二个参数用于控制筛选键值，可以用数组包含筛选的键值，也可以传入一个函数，
+            可以在object对象内部定义toJSON 方法来精确控制如何序列化
+2.反序列化 JSON.parse()    把JSON字符串转化成Javascript对象。
