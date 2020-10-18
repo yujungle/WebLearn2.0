@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .container{
+            width:200px;
+            height:50px;
+            line-height: 50px;
+            font-size: 20px;
+            color:green;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div >{{message}}</div>
+        <div v-text="message"></div>
+        <div v-cloak><<{{message}}>> </div>
+        <div v-text="message"><<>></div>
+        <div v-text="html"></div>
+        <div v-html="html"></div> -->
+        <div style="width:100px; height:30px; background-color:greenyellow" v-bind:title="myTitle"></div>
+        <input type="button" value = "点我吧（错误姿势)" :title="myTitle+'————卢照邻'" v-on:click="alert('初唐四杰（王杨卢骆）之一，排名第三')">
+        <input type="button" value = "点我吧（正确姿势）" :title="myTitle+'————卢照邻'" v-on:click="alertInfo('初唐四杰（王杨卢骆）之一，排名第三')">
+        <div class="container" v-text="msg" @mouseenter="stop()" @mouseleave="start()"></div>
+        <div class="inner" @click="innerHander">
+            <input type="button" value="点击按钮(未阻止冒泡)" @click="btnHander">
+            <input type="button" value="点击按钮(阻止冒泡)" @click.stop="btnHander">
+        </div>
+        <div class="inner" @click.capture="innerHander">
+                <input type="button" value="按钮(capture)" @click="btnHander">
+        </div>
+        <div class="inner" @click.self="innerHander">
+                <input type="button" value="按钮(self)" @click="btnHander">
+        </div>
+        <a href="http://www.baidu.com" @click.prevent="linkClick">搜索一下</a>
+        <a href="http://www.baidu.com" @click.prevent.once="linkClick">搜索一下once</a>
+        <div class="outer" @click="outerHander">
+            <div class="inner" @click="innerHander">
+                <input type="button" value="按钮（冒泡）" @click="btnHander">
+            </div>
+        </div>
+        <div class="outer" @click="outerHander">
+            <div class="inner" style="width:50%;" @click="innerHander">
+                <input type="button" value="按钮（stop）" @click.stop="btnHander">
+            </div>
+        </div>
+        <div class="outer" @click="outerHander">
+            <div class="inner" style="width:50%;" @click.self="innerHander">
+                <input type="button" value="按钮（self）" @click="btnHander">
+            </div>
+        </div>
+        <button v-on:click="autoSubtract">-</button>
+        <input type="text" v-model="number">
+        <button @click="autoAdd">+</button>
+        <p v-for="(val,key,index) in userInfo"> 
+            键：{{key}},值：{{val}},索引：{{index}}
+        </p>
+        <p v-for="i in 3">这是第{{i}}个p标签</p>
+        <ul>
+            <li v-for="(item,index) in users">
+                {{index++}}.[{{item.title}}].{{item.name}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(item,index) in list">
+                {{++index}}.{{item}}
+            </li>
+        </ul>
+         <div>
+            <h3>华山论剑</h3>
+            <label>Id:
+                <input type="text" v-model="id">
+            </label>
+            <label>绰号：
+                <input type="text" v-model="name">
+            </label>
+            <input type="button" value="晋级" @click="add">
+            <table>
+                <tr v-for="item in list1" :key="item.id">
+                    <td><input type="checkbox"></td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                </tr>
+            </table>
+        </div> 
+    </div>
+    <script>
+        const app=new Vue({
+            el:'#app',
+            data:{
+                message:'夜空中最亮的星',
+                html:'感谢每一位从身边溜走的人——<span style = "color:red" > 《独自等待》',
+                myTitle:'得成比目何辞死，愿作鸳鸯不羡仙',
+                msg:'你见我或不见我，我都在那里，不悲不喜；你念我或不念我，情就在那里，不来不去。',
+                interval:null,
+                number:0,
+                list:['水浒传','三国演义','西游记','红楼梦'],
+                users:[{name:'段延庆',title:'恶贯满盈'},
+                    {name:'叶二娘',title:'无恶不作'},
+                    {name:'云中鹤',title:'穷凶极恶'}
+                ],
+                userInfo:{
+                    username:'张三丰',
+                    age:100,
+                },
+                name:'',
+                id:'',
+                list1:[
+                    {id:1, name:'黄狮虎'},
+                    {id:2, name:"欧阳锋"},
+                    {id:3, name:'段执行'},
+                    {id:4, name:'洪七'},
+                    {id:5, name:'王重阳'}
+                ]
+            },
+            created(){
+                this.start();
+            },
+            methods:{
+                alertInfo:function(msg){
+                    alert(msg);
+                },
+                start(){
+                    if(this.interval!=null) return;
+                    console.log(this.interval)
+                    this.interval = setInterval(()=>{
+                        var start = this.msg.substring(0,1);
+                        var end = this.msg.substring(1);
+                        this.msg = end+start;
+                    },300)
+                },
+                stop(){
+                    clearInterval(this.interval);
+                    this.interval = null;
+
+                },
+                innerHander(){
+                    console.log("触发了innerHander");
+                },
+                btnHander(){
+                    console.log("触发了btnHander")
+                },
+                outerHander(){
+                    console.log("触发了outerHander")
+                },
+                linkClick(){
+                    console.log("触发了a标签的点击事件，但是并没有默认情况下的跳转页面发生。")
+                },
+                autoAdd(){
+                    this.number++;
+                },
+                autoSubtract(){
+                    this.number--;
+                },
+                add(){
+                    console.log(this.list1)
+                    this.list1.unshift({id:this.id, name:this.name })
+                }
+            }
+        })
+    </script>
+    <h3>Vue基本代码</h3>
+    <ul>
+        <li>引入vue.js，在浏览器的内存中就会存在一个Vue构造函数</li>
+        <li>new Vue 得到Vue实例，这个实例相当于MVVM中的VM调度者</li>
+        <li>实例中的el属性表示这个Vue实例控制的是页面的哪个区域</li>
+        <li>实例中的data属性存放着el中要用到的数据。</li>
+    </ul>
+    <h3>Vue常用指令</h3>
+    <ul>
+        <li>v-cloak,v-text  解决js文件未加载完成的时候页面出现HTML节点一闪而过的问题
+            <small>二者区别：v-cloak 可以再{{。。。}}前后放置一些内容，可以出现在页面上，v-text元素中的内容将会被覆盖。</small>
+        </li>
+        <li>v-html  在界面中显示带有样式的内容</li>
+        <li>v-bind, v-on    v-bind:用于绑定属性，v-on:用于绑定事件，v-on可以简写成@。</li>  
+        <li>v-model  双向数据绑定，即Vue数据改变，DOM自动更新，表单控件的值发生改变，Vue数据也会自动更新。 v-model 运用在表单控件上如input textarea,select,...</li>
+        <li>v-for 和key   一种循环迭代方式。使用方法：
+            <ul>
+                <li>1.迭代普通数组 ul>li[v-for="(item,index) in list")] {{++index}}.{{item}}</li>
+                <li>2.迭代对象数组 ul>li[v-for="(item,index) in users] {{index++}}.[{{item.title}}].{{item.name}}</li>
+                <li>3.迭代对象中的属性p v-for="(val,key,index) in userInfo">键：{{key}},值：{{val}},索引:{{index}}</p></li>
+                <li>4.迭代数字 p v-for="i in 7" >这是第{{i}}个标签</li>
+            </ul>
+        </li>
+        <li>v-if,v-show  切换元素的显示隐藏状态，v-if 每次都会删除或重建元素，v-show 只是切换了display样式，v-if有更高的切换消耗，v-show有更高的初始渲染消耗。</li>
+    </ul>
+    <h3>事件修饰符</h3>
+    <ul>
+        <li>stop  阻止冒泡</li>
+        <li>prevent  阻止默认事件</li>
+        <li>capture   添加事件侦听器时使用事件捕获模式,capture可以优先捕获事件进行执行</li>
+        <li>self     只在事件在该元素本身（不是子元素）触发时触发回调</li>
+        <li>once   事件只触发一次</li>
+        <li>passive   告诉浏览器我不想阻止事件的默认行为</li>
+        <li><small>stop & self 的区别：  self 只能阻止自身的冒泡行为，并不能阻止所有的冒泡行为,stop可以阻止由自身引起的冒泡行为 </small></li>
+    </ul>
+</body>
+</html>

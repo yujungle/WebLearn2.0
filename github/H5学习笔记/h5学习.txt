@@ -1,0 +1,21 @@
+1. 元素拖放
+    ondragstart        开始拖放
+    ondrag             拖放过程中
+    ondragend          拖放结束
+    ondragenter        被拖放元素进入本元素时
+    ondragover         当被拖放元素在本元素内移动时
+    ondragleave        当被拖放元素离开本元素时
+    ondrop             当源元素释放到本元素时
+
+    一个完整的拖放事件过程
+        dragstart->dragenter->dragover->dragleave->drop->dragend
+    
+    dataTransfer对象： 实现源元素和目的元素之间传递数据。有两个方法：
+        setData(format, data);   开始拖放（ondragstart)时保存数据
+        getData(format)          放入目标元素（ondrop）时读取数据
+
+            format表示数据格式，常见有四种格式：
+                text/plain    文本文字格式；  text/html  HTML代码格式；  text/xml  XML字符格式；  text/url  URL列表格式
+                
+
+

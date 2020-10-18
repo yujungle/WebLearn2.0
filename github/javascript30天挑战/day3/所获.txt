@@ -1,0 +1,13 @@
+布局的话直接text-align就可以把下面的文本和图片居中。
+然后是label 与input的联动，label的for 属性和input的id值一样。
+这里用了很多h5的特性，input的range,和color 模式
+data-自定义属性以及方法，element.dataset.select表示元素的data-select属性
+CSS自定义属性：自定义属性的名字要以 -- 开头，最好是放在：root选择器里，:root 选择器表示根选择器，即html节点。自定义选择器相当于CSS变量，当之后需要使用的时候，用val()取用。
+如：:root{ --mywidth: 10px;}   div{ width: val(--mywidth)}
+jQuery 为节点添加属性的时候，使用attr(),这里添加的是属性，属性是与css同级的一种，比如name,value,src,href等等，是直接在作用在节点上的，而这里有需要改宽度和filter的地方，这里是改CSS属性，所以需要用css()方法。
+另外，一开始直接使用attr()添加属性会有报错的消息，说"--spacing"是无效的属性，按说attr()也是可以自定义属性的，查了资料说jquery不能直接定义新的属性，得用构造函数，这个我想说，不用构造函数也是可以的，我这里报错是因为使用了"--"开头，属性不能使用--开头，所以才会报错。
+然而我们这里需要添加的是css样式，样式名允许--开头，就完美了。
+JQuery 的 mouseover 事件是鼠标悬停在元素上方移动， mouemove 事件是鼠标按下左键之后在元素移动。
+然后是scss文件转化成css文件的过程中发生了错误，因为实在控制台输入的sass style.scss style.css
+命令，没有报错但是css文件是空的，查看css.map文件发现source是空，就很纳闷但是也不知道是为什么，然后去百度就发现了VSCode的功能强大的插件,安装了Easy Sass之后保存scss文件就会自动生成css文件，真的好强！！！
+然后又测试了一下在控制台输入 sass style.scss style.css 又可以了。。。

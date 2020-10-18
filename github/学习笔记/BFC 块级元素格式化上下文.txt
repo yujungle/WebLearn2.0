@@ -1,0 +1,15 @@
+BFC（block formatting contexts) 块级元素格式化上下文
+
+触发BFC的方式（一下任意一条就可以）：
+1. float 的值不为none;
+2.overflow的值不为visible
+3.display 的值为table-cell,table-caption, 和inline-block 之一
+4. position 的值不为static 或reletive中的任何一个。
+
+BFC特点：
+1.BFC内部，盒子会在垂直方向上一个接一个的排列
+2.在BFC内部，相邻的盒子的间隔由他们的外边距叠加构成
+3.BFC内部，每一个元素的左外边距（margin-left）会紧贴着包含盒子的左边，即使存在浮动也是如此。
+4.BFC内部如果存在一个新的BFC，并且存在内部浮动元素，则该BFC区域不会与浮动元素区域重叠
+5.BFC是页面上的一个隔离盒子，该盒子内部的元素不会影响到外部的元素。
+6.计算一个BFC的高度时，其内部的浮动元素的高度也会参与计算。

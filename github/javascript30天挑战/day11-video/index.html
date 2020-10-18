@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../../jQuery-3.x-1.x/jquery-3.2.1.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="player">
+        <video src="../../../../JavaScript30练习资料/JavaScript30-master/11 - Custom Video Player/652333414.mp4" class="player-video"></video>
+        <div class="player-controls">
+            <div class="progress">
+                <div class="progress-filled" style="flex-basis: 100%">
+                </div>
+            </div>
+            <button class="player-btn toggle" title="Toggle Play">►</button>
+            <input type="range" name="volumn" class="player-slider" min="0" max="1" step="0.05" value="0.5" title="声音">
+            <input type="range" name="Rate" class="player-slider" min="0.5" max="2" step="0.5" value = "1" title="倍速">
+            <button data-skip="-10" class="player-btn">« 10s</button>
+            <button data-skip="25" class="player-btn">25s »</button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+bootstrap4  响应式布局，移动设备优先。基于Sass，不支持IE8，
+开源地址：http://twitter.github.com/bootstrap
+插件：  
+    1） font Awesome  专门为bootstrap 设计的图标字体
+        http://fontawesome.dashgame.com
+    2） Flat UI
+        http://www.bootcss.com/p/flat-UI
+    3） Bsie
+        http://www.bootcss.com/p/Bsie
+    4） Sco.js
+        http://www.bootcss.com/p/sco.js
+    5） jQuery-UI-bootstrap
+        http://www.bootcss.com/p/jquery-ui-bootstrap
+    6) HTML 5 Boilerpalte
+        http://www.bootcss/p/html5boilerplate
+    7） Metro UI CSS 
+        http://www.bootcss.com/p/metro-ui-CSS
+    8） Chart.js
+        http://chartjs.bootcss.com/
+资源：
+    Bootstrap3 中文网  http://www.bootstrap.com/
+    Bootstrap3 英文网  https://getbootstrap.com/
+    bootstrap4 中文网  https://v4.bootstrap.com/
+    bootstrap4 英文网  https://getbootstrap.com/docs/4.0/getting-started/introduction/
+    bootstrap 所有版本  https://getbootstrap.com/docs/versions/
+
+学习笔记：
+    轮播图： .carousel定义轮播包含框
+            .carousel-indicators 定义轮播指示器包含框
+            .carousel-inner 定义轮播图片包含框
+            .carousel-caption 定义轮播图的标题和说明
+            .carousel-control-prev和.carousel-control-next 控制播放行为
+
+    布局基础
+        布局容器： .container 根据屏幕宽度不同，宽度呈阶段性变化
+                  .container-fluid  始终与屏幕大小一样
+        响应断点： @media(min-width:576px){...}
+                  超小设备：xs <576px;      不需要媒体查询，因为默认就是xs
+                  小型设备：sm >576px;
+                  中性设备：md >768px;
+                  大型设备：lg >992px;
+                  超大型设备：xl >1200px;
+        z-index:  z轴，屏幕到人眼的方向，用于分层，bootstrap4中的分层
+                $zindex-dropdown:        1000 !default;
+                $zindex-sticky:          1020 !default;
+                $zindex-fixed:           1030 !default;
+                $zindex-modal-backdrop:  1040 !default;
+                $zindex-modal:           1050 !default;
+                $zindex-popover:         1060 !default;
+                $zindex-tooltip:         1070 !default;
+            不推荐自定义z-index 因为改变一个，可能需要改变所有的
+    网格布局：   网格每一行都要放在.container或.container-fluid 容器中，这样才能自动设置一些内外边距
+                .row  .col，.col-sm,.col-md,.col-lg,.col-xl
+                bootstrap4 使用flexbox, bootstrap3使用float。
+                .col-{breakpoint}-auto  根据内容宽度调整
+
+            换行        跨行的等宽多列换行处使用 .w-100 来拆分行
+            删除边距    bootstrap 默认网格-15px的左右内外边距，用                    .no-gutters消除边距
+            重排序      .order-*   定义了order-1到order-12
+            列偏移      .offset-{breakpoint}-n   n是数字，相当于margin-left: n/12;
+    弹性盒子：   .d-flex     弹性伸缩盒子，inline
+                .d-inline-flex   内联块级伸缩盒子，盒子内元素自动充满父元素
+            排列方向    flex-row（默认）  flex-row-reverse     从左到右（默认），从右到左
+                       flex-column flex-column-reverse       从上到下，从下到上
+            内容排列    justify-content-*  x轴上，*可以是start（默认）,end,center,between,around
+            项目对齐    align-items-*   y轴上，*可以是start,end,center,baseline,stretch(默认)
+                        align-self-*   单独设置对齐方式，*可选值如上
+            内容对齐     align-content-* y轴上，针对于分行的情况，每一行的表现，
+                            *可取值：start(默认)，end, center, between, around, stretch.
+            自动相等    .flex-fill     强制平分剩下的空间
+            Auto margin  .mr-auto   .ml-auto   向左推，向右推，
+                         .mb-auto   .mt-auto   向上推，向下推。
+            包裹        .flex-nowrap(默认), .flex-wrap, .flex-wrap-reverse
+                        wrap   当一行放不下的时候，可以在下一行继续，可以设置子元素宽度
+                        nowrap  当一行放不下的时候，压缩子元素的宽度，一定要放在一行，此时设置的宽度是无效的
+    CSS 样式类
+            文本对齐： .text-left, .text-center, .text-right, .text-justify 
+            文本换行   .text-wrap(默认，自动换行)   .text-nowrap（不允许换行） .text-truncate （不允许换行，当文本超出盒子宽度，以省略号的形式代替）
+            文本转换   .text-lowercase   .text-uppercase    .text-capitalize(首字母大写)
+            粗细斜体   .font-weight-*    *可以是light,lighter, normal,  bold, bolder
+            其他文本   .text-decoration-none   
+            颜色 ：    primary(蓝色)， secondary(灰色)， success(浅绿色)， danger(浅红色), warning(浅黄色), info(浅蓝色)， light(浅灰色)， dark(深灰色)， muted(灰色), white(白色)
+                        文本颜色 text-*, 背景颜色 bg-*,
+            边框      添加边框：   .border  .border-top   .border-bottom   .border-right    .border-left
+                      去掉边框：  以上类名后面加-0，如 border-top-0  表示删除上边框。
+                      颜色：  .border-*    *如上面颜色取值
+                      圆角：  .rounded, .rounded-top, .rounded-circle, .rounded-pill
+            宽高      相对于父元素：  w-25, w-50, w-75, w-100, w-auto   h-* （*如w-*）
+                      相对于视口（viewport)   .vw-100,  .vh-100,  .min-vw-100,  .min-vh-100
+            边距      m, p, （margin，padding） mt, mb, ml, mr, pt,pb,pl,pr,  (t,b,l,r,  上下左右)  mx,my,px,py  (x,y,   左右，上下)
+                      *-number     number可以取值0,1,2,3,4,5   表示的值为：0, 0.25rem, 0.5rem, 1rem, 1.5rem, 3rem,
+                      *-n1/n2/n3/n4/n5   表示设置负的边距， 分别表示-0.25rem/-0.5rem/-1rem/-1.5rem/-3rem
+            浮动      .float-left   .float-right   
+                        需要在父元素中添加 .clearfix 类清除浮动对其他元素的影响
+            display   d-{value}  value取值 none, inline, inline-block, block, table, table-cell, table-row, flex, inline-flex
+            溢出      .overflow-auto (内容溢出，自动生成滚动条)， .overflow-hidden 溢出部分隐藏
+            定位      .position-static , .position-relative,  .position-absolute, .position-fixed, .position-sticky
+            阴影      .shadow-none, shadow-sm, shadow, shadow-lg  表示去除阴影，小阴影，正常阴影，大阴影
+            关闭图标  .close      &times; 是一个叉号
+            图片      .img-fluid         响应式图片    图片会随着父元素的大小同步缩放
+                      .img-thumbnail     图像缩略图    为图片添加一个带圆角且1px边界的外边框
+                      图像对齐       1.浮动
+                                    2.文本类，text-center,text-right,text-left
+                                    3.外边距类  mx-auto实现水平居中，此时要把ing转化成块级元素，添加d-block类
+            表格     <table> <thead> <th>  <tbody>  <tr>  <td>  <caption>(表格标题)
+                    为<table></table>标签添加.table 类，才能赋予其BS（Bootstrap)表格优化效果
+                    .table 默认表格效果， .table-borderless 无边界表格，  .table-striped  条纹状表格    .table-bordered   带边框表格    .table-hover  指针悬停风格，    .table-sm   紧凑风格
+                    .table-{color}  primary之类，用于设置表格背景色，也可用于表头和主题
+    CSS组件
+            引入框架文件：bootstrap.css,  jquery.js,  popper.js,  bootstrap.js
+            按钮：       .btn   用于button , a, input, 显示按钮效果
+                    风格： .btn-{color}  背景颜色， .btn-outline-{color} 边框和文本颜色， btn-sm, btn-lg  设置大小
+                          .active ,  .disabled   激活和禁用。
+            按钮组： .btn-group 容器包含一系列a或button标签
+            按钮组工具栏：  多个按钮组放在.btn-toolbar容器中
+
+                   
+            
+                        
+        
+    

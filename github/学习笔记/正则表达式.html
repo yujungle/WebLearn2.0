@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>创建正则表达式</h3>
+    <ul>
+        <li>使用RegExp构造函数来创建：<code>let rel=new RegExp("abc")</code>
+            <p>有一些转义字符需要用反斜杠的在这仍然使用如/n,/t等</p>
+        </li>
+        <li>使用正斜杠包含模式来写成字面值来创建： /abc/
+            <p>在表达式中出现的第二个正斜杠会结束模式，所以如果模式中需要出现正斜杠则要在正斜杠之前加上反斜杠，像\/，而不属于特殊字符的反斜杠将会被保留，如\n就是\n而不是像在字符串中那样代表换行符。</p>
+        </li>
+        <li>包含模式下的特殊字符：+，*，？。。。
+           <ul>
+               <li>+   表示此元素可能会重复很多次，如/\d+/ 表示匹配一个或多个数字。</li>
+               <li>*   表示元素可以重复很多次，还允许匹配0次，如/\d+/表示匹配0个或多个数字</li>
+               <li>?   表示模式的一部分可选，可以匹配0次或1次</li>
+               <li>i   表达式末尾的/.../i 的i表示此表达式部分大小写</li>
+           </ul> 
+        </li>
+    </ul>
+    <h3>正则表达式是一个对象，他有很多方法。</h3>
+    <ul>
+        <li>test()方法：测试一个字符串是否能与模式定义的相匹配，只要字符串中有一部分能符合模式就是返回true ，返回一个布尔值。</li>
+        <li>exec()方法： 如果找不到匹配则返回null，否则返回第一个包含匹配信息的对象</li>
+    </ul>
+    <h3>字符集</h3>
+    <ul>
+        <li>\d  任何数字</li>
+        <li>\w  字母（单词）</li>
+        <li>\s  空白符（空格，制表符，换行符，等）</li>
+        <li>\D  非数字</li>
+        <li>\W  非字母</li>
+        <li>\S  非空白字符</li>
+    </ul>
+
+    <script>
+        console.log(/[0-9]/.test("in 1922"));
+        let d=/\d+/;
+        let d1=/\d*/;
+        let u=/bou?r/;
+        console.log("测试特殊字符：+ * ?")
+        console.log(d.test(123))
+        console.log(d.test(""))
+        console.log(d1.test(123))
+        console.log(d1.test(""))
+        console.log(u.test("bour"))
+        console.log(u.test("bor"))
+        console.log("exec()方法")
+        let match = /\d+/.exec("one tow 100 200 300");
+        console.log(match);
+
+
+        let stock = "1 lemon, 2 cabbages, and 101 eggs";
+        function minusOne(match, amount, unit){
+            console.log()
+            amount = Number(amount) - 1;
+            if (amount==1){
+                unit = unit.slice(0, unit.length-1);
+            }else if(amount == 0){
+                amount = "no";
+            }
+            return amount + " " + unit;
+        }
+        console.log(stock.replace(/(\d+) (\w+)/g, minusOne))
+    </script>
+</body>
+</html>

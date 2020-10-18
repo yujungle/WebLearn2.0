@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+        }
+
+        img {
+            position: relative;
+            width: 200px;
+        }
+        div:nth-child(2){
+            position: relative;
+        }
+        ul {
+            width: 120px;
+            height: 100px;
+            border: 1px solid silver;
+        }
+
+        .bigbox {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: hotpink;
+        }
+
+        .smallbox {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: lightskyblue;
+        }
+
+        .container{
+            width: 160px;
+            margin: 30px auto;
+        }
+        .filepicker{
+            position: relative;
+            width: 160px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            color:#000000;
+            background-color: #ccc;
+        }
+        .filepicker input[type="file"]{
+            position: absolute;
+            top:0;
+            left:0;
+            width: 160px;
+            height:44px;
+            opacity: 0;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //图片拖放
+            var oImg = document.getElementsByTagName("img")[0];
+            var offsetX, offsetY;
+            //记录图片的初始坐标，e.offsetX,e.offsetY 表示鼠标相对于触发事件的对象的坐标
+            oImg.ondragstart = function (e) {
+                offsetX = e.offsetX;
+                offsetY = e.offsetY;
+            };
+            console.log(offsetX, offsetY)
+            //e.pageX e.pageY 表示鼠标相对于当前窗口的坐标
+            oImg.ondrag = function (e) {
+                if (e.pageX == 0 && e.pageY == 0) return;
+
+                console.log(e.pageX, e.pageX - offsetX)
+                oImg.style.top = (e.pageY - offsetY) + "px";
+                oImg.style.left = (e.pageX - offsetX) + "px";
+            }
+
+
+
+            //跨元素拖放
+            var oList = document.getElementById("list");
+            var oLi = oList.getElementsByTagName("li");
+            var oBox = document.getElementById("box");
+            //为每一个li元素添加ondragstart事件   e.target.id 表示当前元素的ID值。
+            for (var i = 0; i < oLi.length; i++) {
+                oLi[i].ondragstart = function (e) {
+                    e.dataTransfer.setData("text/plain", e.target.id);
+                    console.log(e.target.id)
+                }
+            }
+            //调用event.preventdefault 方法来屏蔽元素的默认行为，否则drop事件不会触发。
+            oBox.ondragover = function (e) {
+                e.preventDefault()
+            }
+            oBox.ondrop = function (e) {
+                e.preventDefault();
+                var id = e.dataTransfer.getData("text/plain");     //取得id值
+                var obj = document.getElementById(id);           //取得id对应的节点
+                console.log(obj)
+                console.log(id)
+                oBox.appendChild(obj);                            //将节点插入oBox里面
+            }
+
+
+
+            //垃圾箱效果
+            var oLit = document.getElementById("litter")
+            console.log(oLit)
+            var oBigbox = oLit.getElementsByTagName("div")[0]
+            var oSmallbox = oLit.getElementsByTagName("div")[1];
+            console.log(oBigbox, oSmallbox)
+            oSmallbox.ondragstart = function () { console.log("我在飞") }
+            oBigbox.ondragover = function (e) {
+
+                e.preventDefault();
+            }
+            oBigbox.ondrop = function (e) {
+                e.preventDefault();
+                console.log("lalala" + oSmallbox.parentNode)
+                oSmallbox.parentNode.removeChild(oSmallbox);
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <img src="../bootstrap学习笔记/images/lhead/b.png" alt="" draggable="true">
+    </div>
+
+    <div style="text-align: center">
+        <ul id="list">
+            <li draggable="true" id="li1">HTML</li>
+            <li draggable="true" id="li2">CSS</li>
+            <li draggable="true" id="li3">JS</li>
+            <li draggable="true" id="li4">jQ</li>
+            <li draggable="true" id="li5">Vue.js</li>
+        </ul>
+        <ul id="box"></ul>
+    </div>
+
+
+    <div id="litter">
+        <div class="bigbox"></div>
+        <div class="smallbox" draggable="true"></div>
+    </div>
+
+    <div class="container">
+        <div class="filepicker">
+            <label>点击添加文件</label>
+            <input type="file" id="fileInput" accept="image/*" multiple>
+        </div>
+    </div>
+</body>
+
+</html>

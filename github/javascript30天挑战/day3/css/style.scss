@@ -1,0 +1,36 @@
+:root{
+    --color:#aac2c4;
+    --spacing:40px;
+    --blur:5px;
+}
+img{
+    padding:var(--spacing);
+    background: var(--color);
+    filter:blur(var(--blur));
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #193549;
+    text-align:center;
+    color:honeydew;
+    font-family: 'helvetica neue', sans-serif;
+    padding-bottom: 50px;
+}
+.title{
+    margin-top:80px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow:0 0 0.5rem #aac2c4;
+}
+.control{
+    font-size: 2rem;
+    line-height: 4rem;
+    margin-bottom: 40px;
+}
+img{
+    width:50%;
+}
+em{
+    color:var(--color)
+}

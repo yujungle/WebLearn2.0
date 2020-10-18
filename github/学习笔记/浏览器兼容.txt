@@ -1,0 +1,17 @@
+1. 浏览器默认的margin和padding不同
+    给文档中用到的标签设置：margin 0; padding 0;
+2. 低版本浏览器下CSS样式问题（给低版本的ie浏览器识别特定的css样式）
+    .bgc{
+	    background-color:red;    所有识别
+	    background-color:#00deff\9;  IE6,7,8识别
+	    +background-color:#a200ff;   IE6,7识别
+	    _background-color: #1e0bd1;   IE6识别
+    }
+3.IE下，可以使用获取唱过属性的方法获取自定义属性，也可以使用getAttribute()获取自定义属性
+    firefox下，智能使用getAttribute()获取自定义属性
+	所以：同一使用getAttribute()获取自定义属性
+4. Chrome 中文界面下会默认会将小于12px的文本强制按照12px显示，可加入CSS属性：
+    -webkit-text-size-adjust:none   解决
+5.超链接访问过hover样式后就不出现了，被点击访问过的超链接样式不再具有hover,active，解决 	方法：改变CSS属性顺序：
+	L-V-H-A:  a:link{}    a:visited{}      a:hover{}       a:active{}
+        

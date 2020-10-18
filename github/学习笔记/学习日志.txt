@@ -1,0 +1,4 @@
+10.1 
+今天学习了json，sass，为VSCode添加了一些插件，有Intellisence for CSS names in HTML, HTML CSS Suport, Vue VSCode Snippets, Bootstrap 3 Snippets, Auto Close Tag, Auto Rename Tag, Bookmarks, ESLint, HTML Snippets, JavaScript (ES6) code snippets, jumpy, Live Server, Mark Jump, Prettier - code formater, Vetur, vscode-elm-jump, Vue 2 snippets, Vue Peek: 允许查找和定位到单个的.vue组件， Vue VSCode snippets, VueHelper. 今天Mark jump发生了一些错误，就把它disabled了。
+10.3
+今天做了JS 30天挑战的前三个，有drum,clock, JS控制CSS样式。训练了控制台把scss文件变成css文件，又在VSCode安装了Easy Less,和Easy Sass插件，这样保存scss文件就是直接生成css文件，就不用使用控制台手动转换了。

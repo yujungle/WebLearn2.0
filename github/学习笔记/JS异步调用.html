@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+
+        function test(resolve,reject){
+            var timeOut = Math.random()*2;
+            console.log(timeOut);
+            log('set timeout to: '+timeOut+' seconds');
+            setTimeout(function(){
+                if(timeOut<1){
+                    log('call resolve()...');
+                    resolve('200 OK');
+                }
+                else{
+                    log('call reject()...');
+                    reject('timeout in '+ timeOut +' seconds. ');
+                }
+            },timeOut*1000);
+        }
+        function log(s){
+            var p = document.createElement('p');
+            p.innerHTML = s;
+            logging.appendChild(p);
+        }
+        var logging = document.getElementById('app');
+        var p1=new Promise(test);
+        var p2=p1.then(function(result){
+            console.log('成功'+result);
+        });
+        var p3=p2.catch(function(reason){
+            console.log('失败： '+reason);
+        });
+
+    </script>
+</body>
+</html>

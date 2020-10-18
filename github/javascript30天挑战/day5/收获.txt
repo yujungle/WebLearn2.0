@@ -1,0 +1,16 @@
+1.贝塞尔曲线：
+    cubic-bezier()   表示动画不同时刻的速率，非常神奇，可以在控制台调制出一个满意的动画过程
+2.transition：
+    定义某一个css属性的发生变化的过程，
+    attr time cubic-bezier(),...
+3.transform:  定义CSS动画，可以是二维，也可以是三维。
+    transform3D（x,y,z) 定义3D动画，x,y,z分别表示在x,y,z轴上移动的距离
+4.box-sizing:  盒子大小，用来设定边距和边框是不是在规定盒子宽高的内部
+    content-box   默认值，宽高用于内容框，边距和边框在外面
+    border-box    宽高包括内边距和边框和文本框
+    inherit       继承父元素box-sizing 的值
+5.flex   流式布局。
+4.js
+    forEach()方法用于数组，表示调用数组的每一个元素，elements.forEach(fn)
+    transitionend 事件发生时，propertyName 返回与之关联的CSS属性名，只是可读的。此外，JQuery没有transtionend 事件，需要自定义，也没有propertyName 属性，并且，propertyName 并不适用于其他情况，获取属性值还是需要element.getAttribute(attr)或者$().attr(attr),这可以获取指定属性的值，一定要写属性名，否则控制台会报错的。
+    toggle 

@@ -1,0 +1,12 @@
+浮动会使高度塌陷，高度塌陷会使页面后面的布局不能正常显示。
+清除浮动方式：
+1. 父级元素定义height
+2.父级div也一起浮动
+3.浮动元素的父级div定义伪元素：：after
+.clearfix::after{
+    content:"";
+    display:block;
+    clear:both;
+    overflow:hidden;
+    *zoom:1;
+}

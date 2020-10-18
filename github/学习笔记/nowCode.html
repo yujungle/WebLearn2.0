@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+rl.on("line",function(line){
+    if (line[0]!='\"'||line[line.length-1]!='\"')
+        return "false";
+    var temp=0;
+    for (var i=1;i<line.length-1;i++){
+        if(line[i]=="\""){
+            if(temp==0){
+                return "false"
+            }
+        }
+        if(line[i]=="\\") {
+           if(temp==0) temp=1;
+           else temp=0
+           }
+        else{
+            if(temp==1) temp=0;
+            }
+    }
+    return "true"
+    
+})
+    </script>
+</body>
+</html>

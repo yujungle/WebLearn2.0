@@ -45,7 +45,7 @@
       表单伪类选择器：   :input,   :button,   :submit,   :reset,   :text,   :textarea
                         :password,    :radio,    :checkbox,     :image,    :file
                     操作表单的一些选择器，即input的类型等
-      表单属性伪类选择器：:checked,   :selected,   :enabled,    :disabled,                             :read-only,    :focus
+      表单属性伪类选择器：:checked,   :selected,   :enabled,    :disabled,    :read-only,    :focus
                     操作表单的一些属性
                     （checked属性只有radio，和checkbox类型的表单才有）
       其他伪类选择器： :not(selector)        选取除了某个选择器之外的所有元素
@@ -61,14 +61,14 @@
         在jQuery中，用字符串的形式创建一个元素节点，通过append(),before()等方法将字符串插入到现有的元素节点中。
         如：$li="<li>hhhhhg</li>"，即创建了一个li节点
     2.插入节点
-        prepend()，prependTo() 向所选元素内部的“开始处”插入内容。
-        $(A).prepend(B) 往A的内部的开始处插入B，$(A).prependTo(B)往B的内部的开始处插入A
-        append(),  appendTo() 向所选元素的末尾处插入内容
-        $(A).append(B)往A的内部的末尾处插入B，$(A).appendTo(B)往B的内部的末尾处插入A
-        before(),  insertBefore() 向所选元素的前面插入内容
-        $(A).before(B)往A的前面插入B，$(A).insertBefore(B)往B的前面插入A
-        after(),   insertAfter()  向所选元素的后面插入内容
-        $(A).after(B),向A的后面插入B，$(A).insertAfter(B)向B的后面插入A。
+        prepend()，prependTo()      向所选元素内部的“开始处”插入内容。
+        $(A).prepend(B)             往A的内部的开始处插入B，$(A).prependTo(B)往B的内部的开始处插入A
+        append(),  appendTo()       向所选元素的末尾处插入内容
+        $(A).append(B)              往A的内部的末尾处插入B，$(A).appendTo(B)往B的内部的末尾处插入A
+        before(),  insertBefore()   向所选元素的前面插入内容
+        $(A).before(B)              往A的前面插入B，$(A).insertBefore(B)往B的前面插入A
+        after(),   insertAfter()    向所选元素的后面插入内容
+        $(A).after(B),              向A的后面插入B，$(A).insertAfter(B)向B的后面插入A。
     3.删除元素
         $().remove()     将某个元素及其内部的内容删除，并删除该元素绑定的事件，返回被删除的元素（可以实现元素互换，互换后被删除的元素的事件不能用了）
         $().detach()     将某个元素及其内部的内容删除，未删除该元素绑定的事件，返回被删除的元素（可以实现元素互换，互换后的元素绑定的事件还可以用）
@@ -82,59 +82,61 @@
         $(A).replaceWith(B)  用B替换A
         $(A).replaceAll(B)   用A替换B
     6.包裹元素
-        $(A).wrap(B)   用B将A包裹起来，指将匹配的元素单独包裹，即每一个A都用B包裹。
-        $(A).wrapAll(B)用B将A包裹起来，指将匹配的元素一起包裹，即所有的A由一个B包裹。
-        $(A).wrapInner(B) 将A元素内部的所有元素和文本用B包裹起来，而不会包裹A元素本身。
+        $(A).wrap(B)         用B将A包裹起来，指将匹配的元素单独包裹，即每一个A都用B包裹。
+        $(A).wrapAll(B)      用B将A包裹起来，指将匹配的元素一起包裹，即所有的A由一个B包裹。
+        $(A).wrapInner(B)    将A元素内部的所有元素和文本用B包裹起来，而不会包裹A元素本身。
     7.遍历元素
         $().each(function(index,element){    }) index是可选参数，表示当前元素的索引号，element是可选参数，表示当前元素，可以用$(this)来代替element,如果要退出each循环，在回调函数中返回false 即 return false;
     8.属性操作 
-        $().attr("属性名")    获取元素某个属性的属性值
-        $().attr("属性","取值")  设置某一个元素的属性值
-        $().attr({"属性1": "取值", "属性2": "取值", ...}) 设置多个属性，对象，键值对
-        $().removeAttr("属性名") 删除元素的某个属性
-        $().prop()   用法和attr()方法类似，用于checked,selected,disabled等具有true和false两种取值的属性。
+        $().attr("属性名")                                 获取元素某个属性的属性值
+        $().attr("属性","取值")                            设置某一个元素的属性值
+        $().attr({"属性1": "取值", "属性2": "取值", ...})   设置多个属性，对象，键值对
+        $().removeAttr("属性名")                           删除元素的某个属性     
+        $().prop()                                        用法和attr()方法类似，用于checked,selected,disabled等具有true和false两种取值的属性。
 
         prop()的出现是为了弥补attr的不足，对于attr()不能获取或操作的属性，可以用prop()来实现。
     
     9.样式操作
-        $().css("属性名")    获取一个元素css属性的值
-        $().css("属性","取值") 设置一个css属性
-        $().css({"属性1": "取值", "属性2": "取值", ...}) 设置多个属性,使用的是对象方式，属性与值采用键值对的方式。
+        $().css("属性名")                                  获取一个元素css属性的值
+        $().css("属性","取值")                             设置一个css属性
+        $().css({"属性1": "取值", "属性2": "取值", ...})    设置多个属性,使用的是对象方式，属性与值采用键值对的方式。
 
         $().addClass("类名")      为元素添加一个class,与设置多个css属性一样，但可读性更好。
         $().removeClass("类名")   删除一个class类
         $().toggleClass("类名")   切换一个class，如果该class存在，就删除，如果不存在，就添加。
 
-        $().width(n),  $().height(n)    n可选，n不存在时获取宽，高，n存在时设置宽，高
-        $().innerWidth(), $().innerHeight()    width/height + padding
-        $().outerWidth(), $().outerHeight()    width/height + padding + border
+        $().width(n),  $().height(n)            n可选，n不存在时获取宽，高，n存在时设置宽，高
+        $().innerWidth(), $().innerHeight()     width/height + padding
+        $().outerWidth(), $().outerHeight()     width/height + padding + border
 
         jQuery很多方法都有一个特点，没有参数表示获取，有参数表示设置。
         width(n)中的n不需要带单位，向50px是width(50)
 
-        $().offset()
+        $().offset()          方法用来获取或设置元素相对于“当前文档（也就是浏览器窗口）”的偏移距离
+        $().position()        用来获取或设置当前元素相对于“最近被定为的祖先元素”的偏移位置。
+
+        $().offset().top      获取元素相对于当前文档“顶部”的距离
+        $().offset().left     获取元素相对于当前文档“左部”的距离
+        以上两个方法返回的数值是不带单位的。
+        $().position().top    获取元素相对于最近被定为的祖先元素“顶部”的距离
+        $().position().left   获取元素相对于最近被定位的祖先元素”左部“的距离
+        以上两个方法返回的数值是不带单位的。
+
+        滚动条的距离
+        $().scrollTop()   获取或设置元素相对于滚动条“顶边”的距离
+        $().scrollLeft()  获取或设置元素相对于滚动条“左边”的距离，实际开发中，经常用到scrollTop()方法，而不常用scrollLeft()方法。
+
+        内容操作
+        html()    用来获取或者设置一个元素中的“html内容”，所谓的HTML内容就是所有的内部元素以及文本。
+        text()    用来获取或设置一个元素的“文本内容”
+        val()     用来获取和设置表单元素的值。
+        以上三个方法的特点：没有参数时是获取，有参数时是设置。
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6.事件：
+3.事件：
     1.页面事件：window.onload   vs     $(document).ready(function(){    }) ==> $(function(){})
     2.鼠标事件：
-        click  mouseover  mouseout  mousedown  mouseup
+        click  mouseover  mouseout  mousedown  mouseup mousemove
         $(select).click(fn)
     3.键盘事件：
         keydown  keyup
@@ -176,6 +178,65 @@
     12.this
         jQuery的this用于事件操作中，this始终指向触发当前事件的元素。$(this)
         $("div").click(fn(){  ...   $(this)  }) $(this) 相当于 $("div")
+
+4.动画
+    show()
+    hide()
+    toggle()
+    fadeIn()
+    fadeOut()
+    fadeToggle()
+    fadeTo(speed,opacity,fn)
+    slideUp()
+    slideDown()
+    slideToggle()
+    animate(params,speed,fn)
+    stop()
+    delay(speed)
+    is(":animated")
+5.过滤方法
+    hasClass()
+    eq()
+    is()
+    not()
+    fliter(),has()
+
+6.查找方法
+    parent()
+    parents()
+    parentsUntil()
+    children()
+    find()
+    contents()
+    prev()
+    prevAll()
+    prevUntil()
+    next()
+    nextAll()
+    nextUntil()
+    siblings()
+7.工具函数
+    $.trim(str)      全局函数，，即jQuery对象直接调用，返回去除字符串首尾空格字符的字符串。
+
+7.高级
+    index()  获取元素在父元素中的索引值
+    链式调用   链式调用用于同一个jQuery对象
+    jQuery对象和DOM对象：  jQuery方法用于jQuery对象，DOM方法（原生JavaScript方法）用于DOM对象
+          $()[n]   $().get()   jQuery对象转化为DOM对象
+    解决库冲突  
+    jQuery.noConflict()    释放"$"符号的控制器过渡给其他库，jQuery对象的声明用jQuery()
+
+    jQuery CDN
+        CDN 内容分发网络,即在离主机近的地方放置一台性能良好的，链接顺畅的副本服务器，让用户能够在最近的距离，以最快的速度获取内容。，设置副本服务器投入太大，所以可以使用第三方提供的CND路线。
+        jQuery CDN常用路线：<script src="http://code.jquery.com/jquery-1.12.4.js"
+                                integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv71Oy9C27hHQ+Xp8a4MxAQ="
+                                crossorigin="anonymous">
+                            </script>
+
+                            <script src="https://cdn.bootcss.com/jQuery/1.12.4/jquery.min.js"></script>
+            jQuery CDN 就是引入其它网站的jQuery库，这种方式可以大大提高页面的加载速度，也可以减少自己网站的流量浪费。
+
+
         
 
    

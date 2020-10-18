@@ -1,0 +1,6 @@
+外边距合并指的是：当两个垂直外边距相遇时，他们将形成一个外边距，合并后的外边距的高度等于二者中的较大值
+1. 当一个div在另一个div里，两个div都有margin属性，若想两个div的外边距不合并，需要给外层div添加border属性和overflow:hidden属性
+2. 当两个div不是嵌套关系，而是上下关系时，一个有margin-bottom，另一个有margin-top，则不管有没有border或者overflow属性，两者都会存在外边距合并问题。
+
+
+这个需要和BFC对比记忆。
