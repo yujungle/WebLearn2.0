@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    box-sizing: border-box;
+    min-width: 700px;
+    height: 100vh;
+    background-color: #00ff00;
+}
+*,*:after,*:before{
+    box-sizing: inherit;
+}
+.container{
+    min-width: 700px;
+    text-align: center;
+}
+button{
+    width: 6rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border: none;
+    background-color: #242424;
+    color: #ccc;
+    font-size: 1.6rem;
+    letter-spacing: .1rem;
+    cursor: pointer;
+}
+h1{
+    text-align: center;
+}
+.game{
+    width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+    cursor:url("../images/hammer.ico"),pointer;
+}
+.hole{
+    overflow: hidden;
+}
+.hole:after{
+    content: '';
+    background: url("../images/dirt.svg") center no-repeat;
+    background-size: 80%;
+    bottom: -30px;
+    left: 0;
+    position:absolute;
+    display: block;
+    width: 100%;
+    height: 70px;
+    z-index: 2;
+}
+.mole{
+    background: url("../images/mole.svg") center bottom no-repeat;
+    background-size: 60%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top:100%;
+    transition: all 0.3s;
+}
+.up{
+    top:0;
+}
+
+
